@@ -7,14 +7,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>
-        <h1>WEATHER</h1>
+    <div class="container">
+        <div class="title-container">
+            <img src="assets/icons/weather-icon.png" alt="weather icon of clouds and sun">
+            <h1>WEATHER</h1>
+        </div>
         <div class="search-container">
             <label for="city-input">City Name:</label>
             <input type="text" id="city-input" name="city" placeholder="e.g. Guadalajara">
-            <button id="btn-getWeather">Get Weather</button>
+            <button id="btn-get-weather">
+                <img src="./assets/icons/search.png" alt="Search-icon">
+                Search
+            </button>
         </div>
-        <div id="weather-result">
+        <div id="results-container" style="display: none;">
+            <h2 id="city-result"></h2>
+            <div class="weather-results" id="temperature-result"></div>
+            <div class="weather-results" id="weather-result"></div>
+            <div class="weather-results" id="humidity-result"></div>
+            <div class="weather-results" id="wind-speed-result"></div>
         </div>
     </div>
 
