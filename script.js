@@ -15,25 +15,51 @@ async function fetchWeather(city) {
 }
 
 function displayWeather(data) {
+    const result= document.querySelector('#results-container');
+    const resultsDiv = document.querySelector('#city-result');
+    const temperatureDiv = document.querySelector('#temperature-result');
     const weatherDiv = document.querySelector('#weather-result');
-    const htmlContent = `
-        <h2>Weather in ${data.name}</h2>
-        <p>Temperature: ${data.main.temp} °C</p>
-        <p>Weather: ${data.weather[0].description}</p>
-        <p>Humidity: ${data.main.humidity}%</p>
+    const humidityDiv = document.querySelector('#humidity-result');
+    const windSpeedDiv = document.querySelector('#wind-speed-result');
+    
+    if (result.style.display === 'none') {
+        result.style.display = 'flex';
+    }
+
+    const resultsContent=`
+        Weather in ${data.name}
+    `;
+    const temperatureContent = `
+        <h3>Temperature</h3>
+        <p>${data.main.temp} °C</p>
+    `;
+    const weatherContent = `
+        <h3>Weather</h3>
+        <p>${data.weather[0].description}</p>
+    `;
+    const humidityContent = `
+        <h3>Humidity</h3>
+        <p>${data.main.humidity}%</p>
+    `;
+    const windSpeedContent = `
+        <h3>Wind Speed</h3>
         <p>Wind Speed: ${data.wind.speed} m/s</p>
     `;
-    weatherDiv.innerHTML = htmlContent;
+    resultsDiv.innerHTML = resultsContent;
+    temperatureDiv.innerHTML = temperatureContent;
+    weatherDiv.innerHTML = weatherContent;
+    humidityDiv.innerHTML = humidityContent;
+    windSpeedDiv.innerHTML = windSpeedContent;
 }
 
 // Function to display error message
 function displayError(message) {
-    const weatherDiv = document.querySelector('#weather-result');
+    const weatherDiv = document.querySelector('#results-container');
     weatherDiv.innerHTML = `<p style="color:red;">${message}</p>`;
 }
 
 // Event listener for the button
-document.querySelector('#btn-getWeather').addEventListener('click', () => {
+document.querySelector('#btn-get-weather').addEventListener('click', () => {
     const city = document.querySelector('#city-input').value;
     if (city) {
         fetchWeather(city);
